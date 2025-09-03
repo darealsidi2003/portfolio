@@ -96,10 +96,16 @@ body{
 
 @media (max-width:900px){
   .about-grid{grid-template-columns:1fr;gap:28px}
-  .photo-frame{max-width:100%}
+  .photo-frame{max-width:90%;margin: 0 auto;}
   .projects-track{width:92vw}
   .project-item{min-width:92vw}
   .projects-track-inner{transform:none}
+}
+
+@media (max-width:600px){
+  .top-bar{flex-direction:column;height:auto;padding:10px 20px;}
+  .nav-left{justify-content:center;gap:10px;margin-bottom:8px;}
+  .name-topbar{width:100%;}
 }
 
 #intro-section {
