@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اكتشف المملكة | خريطة المدن التفاعلية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- WELCOME SCREEN -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <div class="welcome-bg">
+      <div class="geo-lines"></div>
+      <div class="welcome-orb orb-1"></div>
+      <div class="welcome-orb orb-2"></div>
+      <div class="welcome-orb orb-3"></div>
+    </div>
+    <div class="welcome-content">
+      <div class="welcome-badge">
+        <span class="badge-star">✦</span>
+        <span>المملكة العربية السعودية</span>
+        <span class="badge-star">✦</span>
+      </div>
+      <div class="welcome-icon">🌴</div>
+      <h1 class="welcome-title">
+        <span class="t1">اكتشف</span>
+        <span class="t2">مدن المملكة</span>
+        <span class="t3">العربية السعودية</span>
+      </h1>
+      <p class="welcome-desc">رحلة تفاعلية عبر أرض الحضارات والتاريخ العريق<br>من شواطئ الخليج إلى قمم الحجاز</p>
+      <div class="welcome-stats">
+        <div class="ws"><span class="wsn">13</span><span class="wsl">مدينة</span></div>
+        <div class="wsd"></div>
+        <div class="ws"><span class="wsn">2M+</span><span class="wsl">كم²</span></div>
+        <div class="wsd"></div>
+        <div class="ws"><span class="wsn">5000</span><span class="wsl">سنة حضارة</span></div>
+      </div>
+      <button class="start-btn" id="startBtn">
+        <span>ابدأ الاستكشاف</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="welcome-scroll-hint">انقر للبدء</div>
+  </div>
+
+  <!-- MAP PAGE -->
+  <div class="map-page hidden" id="mapPage">
+    <header class="map-header">
+      <button class="back-btn" id="backBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l7 7-7 7"/></svg>
+        العودة
+      </button>
+      <div class="header-center">
+        <span class="header-icon">🌴</span>
+        <div>
+          <div class="header-title">اكتشف المملكة</div>
+          <div class="header-sub">خريطة المدن التفاعلية</div>
+        </div>
+      </div>
+      <div class="visited-counter">
+        <span id="visitedCount">0</span><span class="vc-total">/13</span>
+        <span class="vc-label">مدينة</span>
+      </div>
+    </header>
+
+    <div class="map-stage">
+      <div class="map-hint" id="mapHint">
+        <span>🖱️</span> انقر على أي نقطة لاستكشاف المدينة
+      </div>
+
+      <div class="map-wrapper">
+        <!-- City Tooltip -->
+        <div class="city-tooltip hidden" id="cityTooltip">
+          <div class="tt-name" id="ttName"></div>
+          <div class="tt-hint">انقر للمزيد ↓</div>
+        </div>
+
+        <!-- SVG MAP -->
+        <svg class="sa-map" id="saMap" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="rgba(0,60,30,0.5)"/>
+            </filter>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="mapFill" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1d6640"/>
+              <stop offset="40%" stop-color="#165430"/>
+              <stop offset="100%" stop-color="#0c3520"/>
+            </linearGradient>
+            <linearGradient id="seaFill" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0a2240"/>
+              <stop offset="100%" stop-color="#061428"/>
+            </linearGradient>
+            <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="0.6" fill="rgba(255,255,255,0.06)"/>
+            </pattern>
+          </defs>
+
+          <!-- Sea background -->
+          <rect width="800" height="700" fill="url(#seaFill)"/>
+          <rect width="800" height="700" fill="url(#dots)"/>
+
+          <!-- Saudi Arabia shape -->
+          <path class="sa-land" filter="url(#shadow)" d="
+            M120,100 L155,88 L195,78 L240,70 L285,64 L330,60 L375,57
+            L420,57 L465,62 L505,69 L540,78 L570,89 L596,102 L618,118
+            L636,136 L650,155 L660,174 L666,194 L668,215 L665,236
+            L658,256 L648,274 L635,290 L620,304 L603,318 L585,332
+            L567,346 L549,360 L531,374 L515,388 L501,402 L489,416
+            L480,430 L474,444 L471,458 L471,472 L474,485 L480,496
+            L489,505 L500,512 L513,516 L527,518 L540,516 L552,511
+            L562,503 L569,493 L572,481 L571,468 L566,455 L558,443
+            L548,432 L540,425 L535,420 L533,415 L534,410 L538,406
+            L544,404 L551,404 L558,408 L563,415 L566,424 L566,435
+            L563,448 L557,462 L550,476 L546,490 L545,503 L548,514
+            L554,523 L563,530 L574,534 L586,535 L597,532 L606,526
+            L613,516 L616,504 L614,490 L609,476 L601,463 L593,451
+            L587,440 L584,430 L584,420 L588,412 L595,407 L604,405
+            L614,407 L622,412 L628,421 L630,432 L628,445 L623,459
+            L617,474 L614,489 L615,504 L620,516 L628,526 L639,532
+            L651,534 L663,531 L672,523 L677,511 L677,497 L673,482
+            L666,468 L659,455 L655,443 L654,432 L657,423 L664,417
+            L673,415 L682,417 L689,424 L692,434 L691,447 L686,462
+            L680,478 L677,494 L678,509 L682,521 L690,530 L701,535
+            L714,536 L726,531 L734,521 L738,507 L737,491 L730,476
+            L720,461 L710,448 L704,436 L702,424 L706,415 L714,410
+            L724,409 L733,413 L739,422 L740,434 L736,449 L728,465
+            L720,482 L716,498 L717,513 L722,524 L731,532
+            L735,540 L722,555 L700,568 L668,580 L628,590 L585,596
+            L540,599 L494,597 L448,592 L404,582 L362,567 L324,548
+            L290,526 L262,500 L240,472 L224,442 L214,410 L210,376
+            L212,342 L220,308 L232,276 L244,248 L250,222 L248,198
+            L238,178 L222,160 L204,145 L186,134 L168,127 L148,118
+            Z
+          "/>
+
+          <!-- Subtle contour lines -->
+          <path class="sa-contour" d="M200,200 Q350,180 500,220 Q600,240 640,300" opacity="0.15"/>
+          <path class="sa-contour" d="M250,350 Q380,330 500,360 Q580,380 600,440" opacity="0.1"/>
+
+          <!-- City Pins Group -->
+          <!-- RIYADH (Capital) -->
+          <g class="city-group capital-city" data-city="riyadh" style="cursor:pointer">
+            <circle class="pin-aura" cx="490" cy="350" r="24"/>
+            <circle class="pin-ring" cx="490" cy="350" r="16"/>
+            <circle class="pin-core" cx="490" cy="350" r="8"/>
+            <circle class="pin-center" cx="490" cy="350" r="3"/>
+            <text class="pin-text" x="490" y="330" text-anchor="middle">الرياض ★</text>
+          </g>
+
+          <!-- MAKKAH -->
+          <g class="city-group holy-city" data-city="makkah" style="cursor:pointer">
+            <circle class="pin-aura" cx="220" cy="400" r="20"/>
+            <circle class="pin-ring" cx="220" cy="400" r="14"/>
+            <circle class="pin-core" cx="220" cy="400" r="7"/>
+            <circle class="pin-center" cx="220" cy="400" r="3"/>
+            <text class="pin-text" x="220" y="382" text-anchor="middle">مكة المكرمة</text>
+          </g>
+
+          <!-- MADINAH -->
+          <g class="city-group holy-city" data-city="madinah" style="cursor:pointer">
+            <circle class="pin-aura" cx="258" cy="300" r="20"/>
+            <circle class="pin-ring" cx="258" cy="300" r="14"/>
+            <circle class="pin-core" cx="258" cy="300" r="7"/>
+            <circle class="pin-center" cx="258" cy="300" r="3"/>
+            <text class="pin-text" x="258" y="282" text-anchor="middle">المدينة المنورة</text>
+          </g>
+
+          <!-- HAIL -->
+          <g class="city-group" data-city="hail" style="cursor:pointer">
+            <circle class="pin-aura" cx="370" cy="220" r="17"/>
+            <circle class="pin-ring" cx="370" cy="220" r="12"/>
+            <circle class="pin-core" cx="370" cy="220" r="6"/>
+            <circle class="pin-center" cx="370" cy="220" r="2.5"/>
+            <text class="pin-text" x="370" y="205" text-anchor="middle">حائل</text>
+          </g>
+
+          <!-- AL JOUF -->
+          <g class="city-group" data-city="jouf" style="cursor:pointer">
+            <circle class="pin-aura" cx="296" cy="135" r="17"/>
+            <circle class="pin-ring" cx="296" cy="135" r="12"/>
+            <circle class="pin-core" cx="296" cy="135" r="6"/>
+            <circle class="pin-center" cx="296" cy="135" r="2.5"/>
+            <text class="pin-text" x="296" y="120" text-anchor="middle">الجوف</text>
+          </g>
+
+          <!-- TABUK -->
+          <g class="city-group" data-city="tabuk" style="cursor:pointer">
+            <circle class="pin-aura" cx="176" cy="208" r="17"/>
+            <circle class="pin-ring" cx="176" cy="208" r="12"/>
+            <circle class="pin-core" cx="176" cy="208" r="6"/>
+            <circle class="pin-center" cx="176" cy="208" r="2.5"/>
+            <text class="pin-text" x="176" y="192" text-anchor="middle">تبوك</text>
+          </g>
+
+          <!-- NEOM -->
+          <g class="city-group neom-city" data-city="neom" style="cursor:pointer">
+            <circle class="pin-aura" cx="140" cy="170" r="17"/>
+            <circle class="pin-ring" cx="140" cy="170" r="12"/>
+            <circle class="pin-core" cx="140" cy="170" r="6"/>
+            <circle class="pin-center" cx="140" cy="170" r="2.5"/>
+            <text class="pin-text" x="140" y="155" text-anchor="middle">نيوم</text>
+          </g>
+
+          <!-- NORTHERN BORDERS -->
+          <g class="city-group" data-city="northern" style="cursor:pointer">
+            <circle class="pin-aura" cx="408" cy="110" r="17"/>
+            <circle class="pin-ring" cx="408" cy="110" r="12"/>
+            <circle class="pin-core" cx="408" cy="110" r="6"/>
+            <circle class="pin-center" cx="408" cy="110" r="2.5"/>
+            <text class="pin-text" x="408" y="95" text-anchor="middle">الحدود الشمالية</text>
+          </g>
+
+          <!-- EASTERN PROVINCE -->
+          <g class="city-group" data-city="eastern" style="cursor:pointer">
+            <circle class="pin-aura" cx="600" cy="310" r="17"/>
+            <circle class="pin-ring" cx="600" cy="310" r="12"/>
+            <circle class="pin-core" cx="600" cy="310" r="6"/>
+            <circle class="pin-center" cx="600" cy="310" r="2.5"/>
+            <text class="pin-text" x="600" y="295" text-anchor="middle">الشرقية</text>
+          </g>
+
+          <!-- NAJRAN -->
+          <g class="city-group" data-city="najran" style="cursor:pointer">
+            <circle class="pin-aura" cx="415" cy="550" r="17"/>
+            <circle class="pin-ring" cx="415" cy="550" r="12"/>
+            <circle class="pin-core" cx="415" cy="550" r="6"/>
+            <circle class="pin-center" cx="415" cy="550" r="2.5"/>
+            <text class="pin-text" x="415" y="535" text-anchor="middle">نجران</text>
+          </g>
+
+          <!-- JIZAN -->
+          <g class="city-group" data-city="jizan" style="cursor:pointer">
+            <circle class="pin-aura" cx="208" cy="532" r="17"/>
+            <circle class="pin-ring" cx="208" cy="532" r="12"/>
+            <circle class="pin-core" cx="208" cy="532" r="6"/>
+            <circle class="pin-center" cx="208" cy="532" r="2.5"/>
+            <text class="pin-text" x="208" y="517" text-anchor="middle">جازان</text>
+          </g>
+
+          <!-- AL BAHA -->
+          <g class="city-group" data-city="baha" style="cursor:pointer">
+            <circle class="pin-aura" cx="264" cy="462" r="17"/>
+            <circle class="pin-ring" cx="264" cy="462" r="12"/>
+            <circle class="pin-core" cx="264" cy="462" r="6"/>
+            <circle class="pin-center" cx="264" cy="462" r="2.5"/>
+            <text class="pin-text" x="264" y="447" text-anchor="middle">الباحة</text>
+          </g>
+
+          <!-- ASIR -->
+          <g class="city-group" data-city="asir" style="cursor:pointer">
+            <circle class="pin-aura" cx="297" cy="500" r="17"/>
+            <circle class="pin-ring" cx="297" cy="500" r="12"/>
+            <circle class="pin-core" cx="297" cy="500" r="6"/>
+            <circle class="pin-center" cx="297" cy="500" r="2.5"/>
+            <text class="pin-text" x="297" y="485" text-anchor="middle">عسير</text>
+          </g>
+
+          <!-- Compass -->
+          <g transform="translate(730,640)" opacity="0.7">
+            <circle cx="0" cy="0" r="26" fill="none" stroke="rgba(212,168,67,0.35)" stroke-width="1"/>
+            <text x="0" y="-13" text-anchor="middle" fill="#d4a843" font-size="9" font-family="Tajawal,sans-serif">ش</text>
+            <text x="0" y="17" text-anchor="middle" fill="#d4a843" font-size="9" font-family="Tajawal,sans-serif">ج</text>
+            <text x="-14" y="4" text-anchor="middle" fill="#d4a843" font-size="9" font-family="Tajawal,sans-serif">غ</text>
+            <text x="14" y="4" text-anchor="middle" fill="#d4a843" font-size="9" font-family="Tajawal,sans-serif">ش</text>
+            <line x1="0" y1="-8" x2="0" y2="8" stroke="rgba(212,168,67,0.4)" stroke-width="0.8"/>
+            <line x1="-8" y1="0" x2="8" y2="0" stroke="rgba(212,168,67,0.4)" stroke-width="0.8"/>
+          </g>
+
+          <!-- Scale bar -->
+          <g transform="translate(50,660)" opacity="0.6">
+            <line x1="0" y1="0" x2="70" y2="0" stroke="#d4a843" stroke-width="1.5"/>
+            <line x1="0" y1="-4" x2="0" y2="4" stroke="#d4a843" stroke-width="1.5"/>
+            <line x1="70" y1="-4" x2="70" y2="4" stroke="#d4a843" stroke-width="1.5"/>
+            <text x="35" y="-8" text-anchor="middle" fill="#d4a843" font-size="9" font-family="Tajawal,sans-serif">500 كم</text>
+          </g>
+        </svg>
+
+        <!-- Legend -->
+        <div class="map-legend">
+          <div class="leg-item"><div class="leg-dot capital-dot"></div><span>العاصمة</span></div>
+          <div class="leg-item"><div class="leg-dot holy-dot"></div><span>مدينة مقدسة</span></div>
+          <div class="leg-item"><div class="leg-dot neom-dot"></div><span>مشروع مستقبلي</span></div>
+          <div class="leg-item"><div class="leg-dot city-dot"></div><span>مدينة رئيسية</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITY MODAL -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="city-modal" id="cityModal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-hero-wrap">
+        <div class="modal-hero-gradient" id="modalHeroGrad"></div>
+        <div class="modal-hero-info">
+          <div class="mh-emoji" id="mhEmoji"></div>
+          <h2 class="mh-name" id="mhName"></h2>
+          <p class="mh-region" id="mhRegion"></p>
+          <div class="mh-tags" id="mhTags"></div>
+        </div>
+      </div>
+      <div class="modal-tabs">
+        <button class="mtab active" data-tab="overview">نظرة عامة</button>
+        <button class="mtab" data-tab="landmarks">المعالم السياحية</button>
+        <button class="mtab" data-tab="culture">الثقافة والتراث</button>
+      </div>
+      <div class="modal-tab-content" id="modalTabContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

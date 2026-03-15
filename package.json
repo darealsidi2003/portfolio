@@ -1,0 +1,25 @@
+{
+  "name": "prtfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files '*.html, *.css, *.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darealsidi2003/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/darealsidi2003/portfolio/issues"
+  },
+  "homepage": "https://github.com/darealsidi2003/portfolio#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}
