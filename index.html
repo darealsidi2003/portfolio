@@ -13,6 +13,15 @@
 
   <!-- CSS -->
   <link href="style.css" rel="stylesheet">
+  <script>
+    // Immediate scroll reset
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+    window.onload = () => window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+  </script>
 </head>
 
 <body>
@@ -22,36 +31,54 @@
     <div class="nav-container">
       <a href="#" class="logo">DARI ALSAIDI</a>
       <div class="menu-toggle" id="mobile-menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
       <nav>
         <ul>
-          <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+          <li><a href="#about" data-en="About" data-ar="من أنا">About</a></li>
+          <li><a href="#education" data-en="Education" data-ar="التعليم">Education</a></li>
+          <li><a href="#experience" data-en="Experience" data-ar="الخبرة">Experience</a></li>
+          <li><a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a></li>
+          <li><a href="#projects" data-en="Projects" data-ar="المشاريع">Projects</a></li>
+          <li><a href="#certificates" data-en="Certificates" data-ar="الشهادات">Certificates</a></li>
+          <li><a href="#contact" data-en="Contact" data-ar="اتصل بي">Contact</a></li>
         </ul>
       </nav>
-      <a href="imgs/MyCV-Dari Alsaidi.pdf" target="_blank" class="cv-button">Download CV</a>
+      <div class="lang-switch-wrapper">
+        <button id="lang-switch" class="btn-lang">
+          <span class="lang-text" data-en="Ar" data-ar="En">Ar</span>
+        </button>
+      </div>
+      <a href="https://drive.google.com/drive/folders/1QF5cSaEr1tvf307V91lXXopr10ddAW9L" target="_blank" class="cv-button">CV</a>
     </div>
   </header>
 
   <main>
     <!-- Home / Hero Section -->
     <section id="home" class="hero">
+      <div class="hero-noise"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-visuals">
+        <div class="hero-halo"></div>
+        <div class="hero-halo-2"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <canvas id="hero-canvas"></canvas>
+      </div>
       <div class="container hero-content">
-        <span class="hero-tagline">Welcome to my space</span>
-        <h1 class="hero-title">Engineering Digital <span
-            style="background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Experiences</span>
+        <span class="hero-tagline" data-en="Welcome to my space" data-ar="أهلاً بك في مساحتي الخاصة">Welcome to my space</span>
+        <h1 class="hero-title">
+          <span data-en="Engineering Digital " data-ar="هندسة التجارب ">Engineering Digital </span>
+          <span style="background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-en="Experiences" data-ar="الرقمية">Experiences</span>
         </h1>
-        <p class="hero-subtitle">Software Engineering Graduate | Web Developer | UI/UX Designer</p>
+        <p class="hero-subtitle" data-en="Software Engineering Graduate | Web Developer | UI/UX Designer" data-ar="خريج هندسة برمجيات | مطور ويب | مصمم واجهات المستخدم">Software Engineering Graduate | Web Developer | UI/UX Designer</p>
         <div class="hero-btns">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <a href="#about" class="btn btn-primary" data-en="Start" data-ar="ابدأ">Start</a>
+          <a href="#contact" class="btn btn-secondary" data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</a>
         </div>
       </div>
     </section>
@@ -63,178 +90,232 @@
           <img src="imgs/IMG_5666.jpg" alt="Dari Alsaidi Profile">
         </div>
         <div class="about-text">
-          <span class="section-label">About Me</span>
-          <h2 class="section-title">Driven by Challenge, Grounded in Discipline</h2>
-          <p>I am a recent Software Engineering graduate from the University of Ha’il, class of 2025. After five years
-            of dedication, late nights, and relentless problem-solving, I’ve built a solid foundation in software
-            development, system design, and technical analysis.</p>
-          <p>I’m driven by challenge, grounded in discipline, and always ready to build, learn, and push boundaries. My
-            goal is to create software that is not only functional but also intuitive and impactful.</p>
+          <span class="section-label" data-en="About Me" data-ar="من أنا">About Me</span>
+          <h2 class="section-title" data-en="Driven by Challenge, Grounded in Discipline" data-ar="مدفوع بالتحدي، مرتكز على الانضباط">Driven by Challenge, Grounded in Discipline</h2>
+          <p data-en="I am a recent Software Engineering graduate from the University of Ha’il, class of 2025. After five years of dedication, late nights, and relentless problem-solving, I’ve built a solid foundation in software development, system design, and technical analysis."
+             data-ar="أنا خريج حديث في هندسة البرمجيات من جامعة حائل، دفعـة 2025. بعد خمس سنوات من الشغف، وسهر الليالي، والحل المستمر للمشكلات، بنيت أساساً قوياً في تطوير البرمجيات، وتصميم الأنظمة، والتحليل التقني.">I am a recent Software Engineering graduate from the University of Ha’il, class of 2025. After five years of dedication, late nights, and relentless problem-solving, I’ve built a solid foundation in software development, system design, and technical analysis.</p>
+          <p data-en="I’m driven by challenge, grounded in discipline, and always ready to build, learn, and push boundaries. My goal is to create software that is not only functional but also intuitive and impactful."
+             data-ar="يدفعني التحدي، ويقودني الانضباط، وأنا دائماً على استعداد للبناء والتعلم وتجاوز الحدود. هدفي هو إنشاء برمجيات ليست فعالة فحسب، بل سهلة الاستخدام وذات أثر ملموس.">I’m driven by challenge, grounded in discipline, and always ready to build, learn, and push boundaries. My goal is to create software that is not only functional but also intuitive and impactful.</p>
           <div class="about-btns">
-            <a href="#skills" class="btn btn-secondary">Explore Skills</a>
+            <a href="#education" class="btn btn-secondary" data-en="Next: Education" data-ar="التالي: التعليم">Next: Education</a>
           </div>
         </div>
       </div>
     </section>
 
-        <!-- Education Section -->
-        <section id="education">
-            <div class="container reveal">
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <span class="section-label">Academic Path</span>
-                    <h2 class="section-title">Education</h2>
-                </div>
-                <div class="education-card">
-                    <div class="edu-icon">🎓</div>
-                    <div class="edu-info">
-                        <h3>Bachelor's in Software Engineering</h3>
-                        <span class="university">University of Ha'il</span>
-                        <span class="year">Class of 2025</span>
-                    </div>
-                </div>
+    <!-- Education Section -->
+    <section id="education">
+      <div class="container reveal">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="section-label" data-en="Academic Path" data-ar="المسار الأكاديمي">Academic Path</span>
+          <h2 class="section-title" data-en="Education" data-ar="التعليم">Education</h2>
+        </div>
+        <div class="education-card">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-info">
+            <h3 data-en="Bachelor's in Software Engineering" data-ar="بكالوريوس هندسة البرمجيات">Bachelor's in Software Engineering</h3>
+            <span class="university" data-en="University of Ha'il" data-ar="جامعة حائل">University of Ha'il</span>
+            <span class="year" data-en="Class of 2025" data-ar="دفعة 2025">Class of 2025</span>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#experience" class="btn btn-secondary" data-en="Next: Experience" data-ar="التالي: الخبرة العمليّة">Next: Experience</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="container reveal">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="section-label" data-en="Professional Journey" data-ar="الرحلة المهنية">Professional Journey</span>
+          <h2 class="section-title" data-en="Work Experience" data-ar="الخبرة العملية">Work Experience</h2>
+        </div>
+        <div class="experience-timeline">
+          <div class="experience-card">
+            <div class="exp-header">
+              <div class="exp-title-group">
+                <h3 data-en="IT Specialist (Co-op Trainee)" data-ar="أخصائي تقنية معلومات (تدريب تعاوني)">IT Specialist (Co-op Trainee)</h3>
+                <span class="company" data-en="General Administration of Education - Ha'il Region" data-ar="الإدارة العامة للتعليم بمنطقة حائل">General Administration of Education - Ha'il Region</span>
+              </div>
+              <span class="exp-date" data-en="Jan 2025 - Aug 2025" data-ar="يناير 2025 - أغسطس 2025">Jan 2025 - Aug 2025</span>
             </div>
-        </section>
+            <ul class="exp-list">
+              <li data-en="Contributed to the development of internal administrative web applications and automated forms."
+                  data-ar="ساهمت في تطوير تطبيقات الويب الإدارية الداخلية والنماذج المؤتمتة.">Contributed to the development of internal administrative web applications and automated forms.</li>
+              <li data-en="Provided technical troubleshooting and software maintenance for diverse administrative departments."
+                  data-ar="قدمت الدعم الفني وتصحيح المشكلات التقنية وصيانة البرمجيات لمختلف الإدارات.">Provided technical troubleshooting and software maintenance for diverse administrative departments.</li>
+              <li data-en="Assisted in managing network infrastructure and ensuring system reliability for regional educational services."
+                  data-ar="ساعدت في إدارة البنية التحتية للشبكة وضمان موثوقية الأنظمة للخدمات التعليمية في المنطقة.">Assisted in managing network infrastructure and ensuring system reliability for regional educational services.</li>
+              <li data-en="Collaborated with senior IT staff on technical analysis and digital transformation initiatives."
+                  data-ar="تعاونت مع فريق تقنية المعلومات في التحليل التقني ومبادرات التحول الرقمي.">Collaborated with senior IT staff on technical analysis and digital transformation initiatives.</li>
+            </ul>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#skills" class="btn btn-secondary" data-en="Next: Skills" data-ar="التالي: المهارات">Next: Skills</a>
+        </div>
+      </div>
+    </section>
 
     <!-- Skills Section -->
     <section id="skills">
       <div class="container reveal">
         <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="section-label">My Expertise</span>
-          <h2 class="section-title">Technical Toolset</h2>
-                <div class="skills-container">
-                    <!-- Software Engineering -->
-                    <div class="skills-category">
-                        <span class="category-icon">💻</span>
-                        <h3>Software Engineering</h3>
-                        <div class="skill-tags">
-                            <div class="skill-tag"><img src="imgs/java.JPG" alt=""> Java</div>
-                            <div class="skill-tag"><img src="imgs/py.JPG" alt=""> Python</div>
-                            <div class="skill-tag"><img src="imgs/php.JPG" alt=""> PHP</div>
-                            <div class="skill-tag">System Design</div>
-                            <div class="skill-tag">Technical Analysis</div>
-                            <div class="skill-tag">Unit Testing</div>
-                        </div>
-                    </div>
+          <span class="section-label" data-en="My Expertise" data-ar="خبراتي">My Expertise</span>
+          <h2 class="section-title" data-en="Technical Toolset" data-ar="الأدوات التقنية">Technical Toolset</h2>
+        </div>
+        <div class="skills-container">
+            <!-- Software Engineering -->
+            <div class="skills-category">
+              <span class="category-icon">💻</span>
+              <h3 data-en="Software Engineering" data-ar="هندسة البرمجيات">Software Engineering</h3>
+              <div class="skill-tags">
+                <div class="skill-tag"><img src="imgs/java.JPG" alt=""> Java</div>
+                <div class="skill-tag"><img src="imgs/py.JPG" alt=""> Python</div>
+                <div class="skill-tag"><img src="imgs/php.JPG" alt=""> PHP</div>
+                <div class="skill-tag" data-en="System Design" data-ar="تصميم الأنظمة">System Design</div>
+                <div class="skill-tag" data-en="Technical Analysis" data-ar="التحليل التقني">Technical Analysis</div>
+                <div class="skill-tag" data-en="Unit Testing" data-ar="اختبار الوحدات">Unit Testing</div>
+              </div>
+            </div>
 
-                    <!-- Web & UI/UX -->
-                    <div class="skills-category">
-                        <span class="category-icon">✨</span>
-                        <h3>Web & UI/UX Design</h3>
-                        <div class="skill-tags">
-                            <div class="skill-tag"><img src="imgs/html.jpg" alt=""> HTML5</div>
-                            <div class="skill-tag"><img src="imgs/css.JPG" alt=""> CSS3</div>
-                            <div class="skill-tag"><img src="imgs/js.JPG" alt=""> JS</div>
-                            <div class="skill-tag">Responsive Design</div>
-                            <div class="skill-tag">Figma / UI Design</div>
-                        </div>
-                    </div>
+            <!-- Web & UI/UX -->
+            <div class="skills-category">
+              <span class="category-icon">✨</span>
+              <h3 data-en="Web & UI/UX Design" data-ar="تصميم الويب والواجهات">Web & UI/UX Design</h3>
+              <div class="skill-tags">
+                <div class="skill-tag"><img src="imgs/html.jpg" alt=""> HTML5</div>
+                <div class="skill-tag"><img src="imgs/css.JPG" alt=""> CSS3</div>
+                <div class="skill-tag"><img src="imgs/js.JPG" alt=""> JS</div>
+                <div class="skill-tag" data-en="Responsive Design" data-ar="التصميم المتجاوب">Responsive Design</div>
+                <div class="skill-tag" data-en="Figma / UI Design" data-ar="فيجما / تصميم الواجهات">Figma / UI Design</div>
+              </div>
+            </div>
 
-                    <!-- Specialized Skills -->
-                    <div class="skills-category">
-                        <span class="category-icon">🚀</span>
-                        <h3>Specialized Skills</h3>
-                        <div class="skill-tags">
-                            <div class="skill-tag"><img src="imgs/unity.JPG" alt=""> Unity Game Dev</div>
-                            <div class="skill-tag">Data Analysis</div>
-                            <div class="skill-tag"><img src="imgs/soft_eng.png" alt=""> Generative AI</div>
-                            <div class="skill-tag">Antigravity AI Agent</div>
-                            <div class="skill-tag"><img src="imgs/github.JPG" alt=""> Git/GitHub</div>
-                            <div class="skill-tag"><img src="imgs/vc.JPG" alt=""> VS Code</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Specialized Skills -->
+            <div class="skills-category">
+              <span class="category-icon">🚀</span>
+              <h3 data-en="Specialized Skills" data-ar="مهارات متخصصة">Specialized Skills</h3>
+              <div class="skill-tags">
+                <div class="skill-tag"><img src="imgs/unity.JPG" alt=""> <span data-en="Unity Game Dev" data-ar="تطوير ألعاب يونيتي">Unity Game Dev</span></div>
+                <div class="skill-tag" data-en="Data Analysis" data-ar="تحليل البيانات">Data Analysis</div>
+                <div class="skill-tag"><img src="imgs/soft_eng.png" alt=""> <span data-en="Generative AI" data-ar="الذكاء الاصطناعي التوليدي">Generative AI</span></div>
+                <div class="skill-tag" data-en="Antigravity AI Agent" data-ar="عميل الذكاء الاصطناعي Antigravity">Antigravity AI Agent</div>
+                <div class="skill-tag"><img src="imgs/github.JPG" alt=""> Git/GitHub</div>
+                <div class="skill-tag"><img src="imgs/vc.JPG" alt=""> VS Code</div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="#projects" class="btn btn-secondary" data-en="Next: Projects" data-ar="التالي: المشاريع">Next: Projects</a>
+          </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
       <div class="container reveal">
         <div class="projects-header">
-          <span class="section-label">Portfolio</span>
-          <h2 class="section-title">Featured Projects</h2>
+          <span class="section-label" data-en="Portfolio" data-ar="معرض أعمالي">Portfolio</span>
+          <h2 class="section-title" data-en="Featured Projects" data-ar="أبرز المشاريع">Featured Projects</h2>
         </div>
         <div class="projects-grid">
-                    <!-- Project NEXOS -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <img src="imgs/nexos.png" alt="NEXOS Platform">
-                        </div>
-                        <div class="project-content">
-                            <h3>NEXOS Smart Gym</h3>
-                            <p>A comprehensive smart gym system connecting members, trainers, and staff. Built with modern architecture and AI features.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/darealsidi2003/NEXOS" target="_blank" class="btn btn-secondary">GitHub Repo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 1 -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <img src="imgs/RunningCat.jpg" alt="Running Cat">
-                        </div>
-                        <div class="project-content">
-                            <h3>Running Cat</h3>
-                            <p>An interactive game developed using Unity. A cat's adventurous escape from children, featuring health restoration and speed boosts.</p>
-                            <div class="project-links">
-                                <a href="https://itch.io/jam/tuwaiq-x-hp-game-programing-and-design-1" target="_blank" class="btn btn-secondary">Play Game</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <img src="imgs/m3lm.PNG" alt="Muallim Platform">
-                        </div>
-                        <div class="project-content">
-                            <h3>Muallim Platform</h3>
-                            <p>A specialized platform for internal administration tutorials, showcasing the latest technologies implemented in professional environments.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/darealsidi2003/MoaleemPlatform" target="_blank" class="btn btn-secondary">GitHub Repo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <img src="imgs/forms.png" alt="Educational Forms">
-                        </div>
-                        <div class="project-content">
-                            <h3>Educational Admin Forms</h3>
-                            <p>Centralized web solution for administrative forms, designed to reduce workload and streamline employee access to essential documents.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/darealsidi2003/ProjectForMOE" target="_blank" class="btn btn-secondary">GitHub Repo</a>
-                            </div>
-                        </div>
-                    </div>
+          <!-- Project NEXOS -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="imgs/nexos.png" alt="NEXOS Platform">
+            </div>
+            <div class="project-content">
+              <h3 data-en="NEXOS Smart Gym" data-ar="نيكسوس - النادي الذكي">NEXOS Smart Gym</h3>
+              <p data-en="A comprehensive smart gym system connecting members, trainers, and staff. Built with modern architecture and AI features."
+                 data-ar="نظام متكامل للأندية الرياضية الذكية يربط بين الأعضاء والمدربين والموظفين. تم بناؤه بهندسة برمجية حديثة وميزات تعتمد على الذكاء الاصطناعي.">A comprehensive smart gym system connecting members, trainers, and staff. Built with modern architecture and AI features.</p>
+              <div class="project-links">
+                <a href="https://github.com/darealsidi2003/NEXOS" target="_blank" class="btn btn-secondary" data-en="GitHub Repo" data-ar="مستودع الكود">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="imgs/RunningCat.jpg" alt="Running Cat">
+            </div>
+            <div class="project-content">
+              <h3 data-en="Running Cat" data-ar="القطة الهاربة">Running Cat</h3>
+              <p data-en="An interactive game developed using Unity. A cat's adventurous escape from children, featuring health restoration and speed boosts."
+                 data-ar="لعبة تفاعلية تم تطويرها باستخدام محرك يونيتي (Unity). مغامرة لقطة تهرب من الأطفال، تتضمن عناصر لاستعادة الصحة وزيادة السرعة.">An interactive game developed using Unity. A cat's adventurous escape from children, featuring health restoration and speed boosts.</p>
+              <div class="project-links">
+                <a href="https://itch.io/jam/tuwaiq-x-hp-game-programing-and-design-1" target="_blank"
+                  class="btn btn-secondary" data-en="Play Game" data-ar="العب الآن">Play Game</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="imgs/m3lm.PNG" alt="Muallim Platform">
+            </div>
+            <div class="project-content">
+              <h3 data-en="Muallim Platform" data-ar="منصة مُعلم">Muallim Platform</h3>
+              <p data-en="A specialized platform for internal administration tutorials, showcasing the latest technologies implemented in professional environments."
+                 data-ar="منصة متخصصة للشروحات الإدارية الداخلية، تستعرض أحدث التقنيات المستخدمة في بيئات العمل الاحترافية.">A specialized platform for internal administration tutorials, showcasing the latest technologies implemented in professional environments.</p>
+              <div class="project-links">
+                <a href="https://github.com/darealsidi2003/MoaleemPlatform" target="_blank"
+                  class="btn btn-secondary" data-en="GitHub Repo" data-ar="مستودع الكود">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="imgs/forms.png" alt="Educational Forms">
+            </div>
+            <div class="project-content">
+              <h3 data-en="Educational Admin Forms" data-ar="النماذج الإدارية التعليمية">Educational Admin Forms</h3>
+              <p data-en="Centralized web solution for administrative forms, designed to reduce workload and streamline employee access to essential documents."
+                 data-ar="حل مركزي عبر الويب للنماذج الإدارية، مصمم لتقليل عبء العمل وتسهيل وصول الموظفين إلى الوثائق الأساسية.">Centralized web solution for administrative forms, designed to reduce workload and streamline employee access to essential documents.</p>
+              <div class="project-links">
+                <a href="https://github.com/darealsidi2003/ProjectForMOE" target="_blank"
+                  class="btn btn-secondary" data-en="GitHub Repo" data-ar="مستودع الكود">GitHub Repo</a>
+              </div>
             </div>
           </div>
         </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#certificates" class="btn btn-secondary" data-en="Next: Certificates" data-ar="التالي: الشهادات">Next: Certificates</a>
+        </div>
+      </div>
+      </div>
       </div>
     </section>
 
     <!-- Certificates (Small Section) -->
     <section id="certificates" style="min-height: auto; padding-bottom: 50px;">
       <div class="container reveal" style="text-align: center;">
-        <span class="section-label">Growth</span>
-        <h2 class="section-title">Certificates</h2>
+        <span class="section-label" data-en="Growth" data-ar="النمو">Growth</span>
+        <h2 class="section-title" data-en="Certificates" data-ar="الشهادات">Certificates</h2>
         <div class="certificates-grid">
           <div class="cert-card">
             <a href="imgs/tgd.pdf" target="_blank">
               <img src="imgs/game_dev.png" alt="game development">
-              <span class="cert-name">game development - Tuwaiq</span>
+              <span class="cert-name" data-en="game development - Tuwaiq" data-ar="game development - Tuwaiq">game development - Tuwaiq</span>
             </a>
           </div>
           <div class="cert-card">
             <a href="#" target="_blank">
               <img src="imgs/vibe_coding.png" alt="Vibe Coding SDAIA">
-              <span class="cert-name">Vibe Coding & Generative AI - SDAIA</span>
+              <span class="cert-name" data-en="Vibe Coding & Generative AI - SDAIA" data-ar="Vibe Coding & Generative AI - SDAIA">Vibe Coding & Generative AI - SDAIA</span>
             </a>
           </div>
           <div class="cert-card">
             <a href="#" target="_blank">
               <img src="imgs/data_analysis.png" alt="Data Analysis">
-              <span class="cert-name">Data Analysis - Aja Space</span>
+              <span class="cert-name" data-en="Data Analysis - Aja Space" data-ar="Data Analysis - Aja Space">Data Analysis - Aja Space</span>
             </a>
           </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="#contact" class="btn btn-secondary" data-en="Next: Contact" data-ar="التالي: اتصل بي">Next: Contact</a>
         </div>
       </div>
     </section>
@@ -243,44 +324,41 @@
     <section id="contact">
       <div class="container contact-container reveal">
         <div class="contact-info">
-          <span class="section-label">Connect</span>
-          <h2>Let's build something <span
-              style="background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">together.</span>
+          <span class="section-label" data-en="Connect" data-ar="تواصل">Connect</span>
+          <h2>
+            <span data-en="Let's build something " data-ar="لنصنع شيئاً ">Let's build something </span>
+            <span style="background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-en="together." data-ar="معاً.">together.</span>
           </h2>
-          <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+          <p data-en="I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions."
+             data-ar="أنا متاح دائماً لمناقشة المشاريع الجديدة، الأفكار الإبداعية أو الفرص لأكون جزءاً من رؤيتكم.">I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
           <div class="contact-methods">
             <a href="mailto:darealsidi2003@gmail.com" class="contact-card">
-              <h4>Email</h4>
+              <h4 data-en="Email" data-ar="البريد الإلكتروني">Email</h4>
               <p>darealsidi2003@gmail.com</p>
             </a>
             <a href="tel:0580233211" class="contact-card">
-              <h4>Phone</h4>
+              <h4 data-en="Phone" data-ar="الجوال">Phone</h4>
               <p>+966 580 233 211</p>
             </a>
             <a href="https://www.linkedin.com/in/dari-al-saidi-55166730b" target="_blank" class="contact-card">
-              <h4>LinkedIn</h4>
-              <p>Visit Profile</p>
+              <h4 data-en="LinkedIn" data-ar="لينكد إن">LinkedIn</h4>
+              <p data-en="Visit Profile" data-ar="زيارة الملف الشخصي">Visit Profile</p>
             </a>
             <a href="https://github.com/darealsidi2003" target="_blank" class="contact-card">
-              <h4>GitHub</h4>
-              <p>Check Repositories</p>
+              <h4 data-en="GitHub" data-ar="جيت هاب">GitHub</h4>
+              <p data-en="Check Repositories" data-ar="مشاهدة المستودعات">Check Repositories</p>
             </a>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; justify-content: center;">
-          <!-- Floating element or decorative graphic -->
-          <div
-            style="width: 300px; height: 300px; background: var(--accent-gradient); filter: blur(100px); border-radius: 50%; opacity: 0.3;">
           </div>
         </div>
       </div>
+    </section>
     </section>
   </main>
 
   <footer>
     <div class="container">
       <span class="footer-logo">DARI ALSAIDI</span>
-      <p class="footer-text">&copy; 2025 Dari Alsaidi. Built with passion & precision.</p>
+      <p class="footer-text" data-en="&copy; 2025 Dari Alsaidi. Built with passion & precision." data-ar="&copy; 2025 ضاري السعيدي. صُنع بشغف وإتقان.">&copy; 2025 Dari Alsaidi. Built with passion & precision.</p>
     </div>
   </footer>
 
