@@ -61,8 +61,6 @@ header {
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
     z-index: 1000;
-    display: flex;
-    align-items: center;
 }
 
 .nav-container {
@@ -70,59 +68,39 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -1px;
     background: var(--accent-gradient);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    z-index: 1001;
 }
 
-/* --- Certificates Section --- */
-.certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
 }
 
-.cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 1rem;
-    transition: all 0.3s ease;
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-primary);
-}
-
-.cert-card a {
-    text-decoration: none;
+.menu-toggle span {
     display: block;
-}
-
-.cert-card img {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-}
-
-.cert-name {
-    display: block;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    width: 25px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: 0.3s;
 }
 
 nav ul {
@@ -537,14 +515,52 @@ nav ul li a:hover, nav ul li a.active {
     font-weight: 500;
 }
 
-@media (max-width: 768px) {
-    .education-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-    }
+/* --- Certificates Section --- */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
+.cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-primary);
+}
+
+.cert-card a {
+    text-decoration: none;
+    display: block;
+}
+
+.cert-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.cert-name {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* --- Footer --- */
+footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--glass-border);
+    text-align: center;
+}
 
 .footer-logo {
     font-size: 1.2rem;
@@ -581,24 +597,111 @@ nav ul li a:hover, nav ul li a.active {
     transform: translateY(0);
 }
 
-/* --- Responsive --- */
-@media (max-width: 992px) {
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
     .about-grid, .contact-container {
-        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
     .hero-title {
-        font-size: 3.5rem;
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
 }
 
 @media (max-width: 768px) {
-    nav ul {
-        display: none;
+    section {
+        padding: 60px 0;
     }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(11, 15, 26, 0.98);
+        backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000;
+        border-left: 1px solid var(--glass-border);
+    }
+
+    header nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    nav ul li a {
+        font-size: 1.25rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-image {
+        order: -1;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .education-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
     .hero-btns {
         flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cv-button {
+        display: none; /* Hide top CV button on mobile for cleaner nav */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .hero-title {
+        font-size: 2.5rem;
     }
     .section-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 }
