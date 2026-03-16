@@ -1102,11 +1102,15 @@ footer {
     }
 
     .cv-button {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
         order: 3;
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
         margin-left: 0.5rem;
         margin-right: 0.5rem;
+        z-index: 1001;
     }
 
     .menu-toggle {
@@ -1117,6 +1121,20 @@ footer {
 @media (max-width: 480px) {
     .container {
         padding: 0 1rem;
+    }
+    .nav-container {
+        padding: 0 0.75rem;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .cv-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+    }
+    .lang-switch-wrapper {
+        margin-left: 0.2rem;
     }
     .hero-title {
         font-size: 2.5rem;
