@@ -1096,8 +1096,21 @@ footer {
         margin-right: auto;
     }
 
+    .lang-switch-wrapper {
+        order: 2;
+        margin-left: auto;
+    }
+
     .cv-button {
-        display: none; /* Hide top CV button on mobile for cleaner nav */
+        order: 3;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .menu-toggle {
+        order: 4;
     }
 }
 
